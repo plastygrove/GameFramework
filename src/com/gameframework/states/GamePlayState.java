@@ -9,14 +9,17 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.gameframework.Camera;
 import com.gameframework.PhysicsHandler;
+import com.gameframework.Util;
 import com.gameframework.objects.Ball;
 import com.gameframework.objects.GameObject;
 import com.gameframework.objects.Ground;
+import com.gameframework.objects.Paddle;
 
 public class GamePlayState extends BasicGameState {
 
@@ -26,6 +29,7 @@ public class GamePlayState extends BasicGameState {
 	private List<GameObject> allObjects;
 	private World world;
 	private int currentKey;
+	private Paddle paddle;
 
 	public GamePlayState(int id) {
 		super();
@@ -64,7 +68,17 @@ public class GamePlayState extends BasicGameState {
 
 		Ground ground = new Ground(world, new Vec2(0, -2), 14, 1);
 		allObjects.add(ground);
+		paddle = new Paddle(world, new Vec2(0f, -3f), 1f, .5f);
+		allObjects.add(paddle);
 
+	}
+
+	@Override
+	public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+		super.mouseMoved(oldx, oldy, newx, newy);
+		Util util = Util.getInstance();
+		Vec2 boxPos = util.slickToBox(new Vector2f(newx, newy));
+		paddle.setPosition(boxPos);
 	}
 
 	@Override

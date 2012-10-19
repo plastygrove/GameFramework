@@ -4,7 +4,6 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
 import org.newdawn.slick.Image;
 
 
@@ -12,7 +11,6 @@ public abstract class GameObject implements Displayable, Physical {
 	protected Vec2 position;
 	protected Image image;
 	protected Body body;
-	protected World world;
 	public float boundingWidth;
 	public float boundingHeight;
 
@@ -23,6 +21,7 @@ public abstract class GameObject implements Displayable, Physical {
 	@Override
 	public void setPosition(Vec2 position){
 		this.position = position;
+		body.setTransform(position, body.getAngle());
 	}
 	
 	@Override

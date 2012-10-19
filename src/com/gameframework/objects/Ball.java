@@ -21,7 +21,6 @@ public class Ball extends GameObject {
 
 	public Ball(World world, Vec2 position, float radius) {
 		this.position = position;
-		this.world = world;
 		this.radius = radius;
 		this.boundingHeight = this.boundingWidth = 2 * radius;
 
