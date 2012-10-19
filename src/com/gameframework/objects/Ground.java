@@ -6,9 +6,7 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.fills.GradientFill;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
@@ -31,10 +29,11 @@ public class Ground extends GameObject {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g, Vec2 offset) {
 		Util util = Util.getInstance();
-		Vector2f pos = util.rectBoxToSlick(position, boundingWidth, boundingHeight);
-		Shape shape = new Rectangle(pos.x, pos.y, util.metresToPixels(boundingWidth), util.metresToPixels(boundingHeight));
+		Vec2 offsetPos = new Vec2(position.x+offset.x, position.y+offset.y);
+		Vector2f slickPosition = util.rectBoxToSlick(offsetPos, boundingWidth, boundingHeight);
+		Shape shape = new Rectangle(slickPosition.x, slickPosition.y, util.metresToPixels(boundingWidth), util.metresToPixels(boundingHeight));
 //		GradientFill fill = new GradientFill(pos.x-10, pos.y, Color.green, pos.x, pos.y, Color.green, false);
 //		g.fill(shape, fill);
 		g.draw(shape);
