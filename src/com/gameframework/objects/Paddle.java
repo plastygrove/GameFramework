@@ -35,7 +35,7 @@ public class Paddle extends GameObject {
 	protected BodyDef getBodyDef() {
 		BodyDef bd = new BodyDef();
 		bd.position = position;
-		bd.type = BodyType.STATIC;
+		bd.type = BodyType.DYNAMIC;
 		return bd;
 	}
 
@@ -48,7 +48,7 @@ public class Paddle extends GameObject {
 
 		fd.shape = ps;
 
-		fd.density = 0.5f;
+		fd.density = 5.5f;
 		fd.friction = 0.3f;
 		fd.restitution = 0.5f;
 

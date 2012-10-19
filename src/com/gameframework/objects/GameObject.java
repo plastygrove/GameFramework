@@ -33,5 +33,9 @@ public abstract class GameObject implements Displayable, Physical {
 	public void update(){
 		this.position = body.getPosition().clone();
 	}
+	
+	public void applyLinearVelocity(Vec2 velocity){
+		body.setLinearVelocity(velocity);
+	}
 
 }

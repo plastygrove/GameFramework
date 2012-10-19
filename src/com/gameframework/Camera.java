@@ -53,10 +53,10 @@ public class Camera {
 		boolean bDisp = false;
 		Vec2 objPos = obj.getPosition();
 
-		float objLeft = objPos.x;
-		float objRight = objPos.x + obj.boundingWidth;
-		float objTop = objPos.y;
-		float objBottom = objPos.y + obj.boundingHeight;
+		float objLeft = objPos.x - obj.boundingWidth / 2;
+		float objRight = objPos.x + obj.boundingWidth / 2;
+		float objTop = objPos.y - obj.boundingHeight / 2;
+		float objBottom = objPos.y + obj.boundingHeight / 2;
 
 		if (isInView(objLeft, objTop) || isInView(objRight, objTop) || isInView(objLeft, objBottom) || isInView(objRight, objBottom))
 			bDisp = true;
