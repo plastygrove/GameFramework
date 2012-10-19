@@ -30,6 +30,7 @@ public class GamePlayState extends BasicGameState {
 	private World world;
 	private int currentKey;
 	private Paddle paddle;
+	private List<Integer> keyList;
 
 	public GamePlayState(int id) {
 		super();
@@ -38,6 +39,8 @@ public class GamePlayState extends BasicGameState {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+		keyList = new ArrayList<>();
+		
 		allObjects = new ArrayList<>();
 		handler = new PhysicsHandler();
 		world = new World(new Vec2(0.0f, 0.0f), true);
@@ -102,6 +105,18 @@ public class GamePlayState extends BasicGameState {
 		case Input.KEY_DOWN:
 			camera.move(new Vec2(0, -0.01f));
 			break;
+		case Input.KEY_W:
+			
+			break;
+		case Input.KEY_S:
+			
+			break;
+		case Input.KEY_A:
+			
+			break;
+		case Input.KEY_D:
+			
+			break;
 		default:
 
 		}
@@ -112,13 +127,20 @@ public class GamePlayState extends BasicGameState {
 		super.keyPressed(key, c);
 		// handler.simulate(world, allObjects, .01f);
 		currentKey = key;
+		keyList.add(key);
 	}
 
 	@Override
 	public void keyReleased(int key, char c) {
 		super.keyReleased(key, c);
-		if(currentKey == key)
-			currentKey = -1;
+		keyList.remove(new Integer(key));
+		if(currentKey == key){
+			if(keyList.isEmpty()){
+				currentKey = -1;
+			} else {
+				currentKey = keyList.get(0);
+			}
+		}
 	}
 
 	@Override
